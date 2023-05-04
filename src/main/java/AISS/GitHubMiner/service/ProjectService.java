@@ -10,8 +10,8 @@ public class ProjectService {
 
     @Autowired
     RestTemplate restTemplate;
-    public Project findProject(String id){
-        String uri = "https://gitlab.com/api/v4/projects/" + id + "?private_token=glpat-2_yFGw7WLXHPBHEZHbG5";
+    public Project findProject(String owner, String repo){
+        String uri = "https://api.github.com/repos/" + owner + "/" + repo;
 
         Project project = restTemplate.getForObject(uri, Project.class);
 

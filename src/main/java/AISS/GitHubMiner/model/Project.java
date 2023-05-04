@@ -12,11 +12,11 @@ public class Project {
     private String id;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("web_url")
+    @JsonProperty("html_url")
     private String webUrl;
     @JsonProperty("commits")
     private List<Commit> commits;
-    @JsonProperty("commits")
+    @JsonProperty("issues")
     private List<Issue> issues;
 
     public Project(){
@@ -47,27 +47,27 @@ public class Project {
     public void setName(String name) {
         this.name = name;
     }
-    @JsonProperty("web_url")
+    @JsonProperty("html_url")
     public String getWeb_url() {
         return webUrl;
     }
-    @JsonProperty("web_url")
+    @JsonProperty("html_url")
     public void setWeb_url(String web_url) {
         this.webUrl = web_url;
     }
-
+    @JsonProperty("commits")
     public List<Commit> getCommits() {
         return commits;
     }
-
+    @JsonProperty("commits")
     public void setCommits(List<Commit> commits) {
         this.commits = commits;
     }
-
+    @JsonProperty("issues")
     public List<Issue> getIssue() {
         return issues;
     }
-
+    @JsonProperty("issues")
     public void setIssue(List<Issue> issues) {
         this.issues = issues;
     }

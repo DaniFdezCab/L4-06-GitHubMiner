@@ -18,12 +18,9 @@ public class ProjectController {
         this.commits = commits;
         this.issues = issues;
     }
-    @GetMapping("/{id}")
-    public Project findAll(@PathVariable String id, @RequestParam(required = false, name = "sinceCommits") Integer sinceCommits, @RequestParam(required = false, name = "sinceIssues") Integer sinceIssues, @RequestParam(required = false, name = "maxPages") Integer maxPages) {
-        Project project = this.project.findProject(id);
-        project.setCommits(commits.getAllCommits(id,sinceCommits, maxPages));
-        project.setIssue(issues.findIssues(id));
-
+    @GetMapping("/{owner}/{repo}")
+    public Project findAll(@PathVariable String owner, @PathVariable String repo) {
+        Project project = this.project.findProject(owner, repo);
         return project;
     }
 
