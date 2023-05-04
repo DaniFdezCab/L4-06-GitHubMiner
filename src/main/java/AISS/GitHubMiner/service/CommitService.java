@@ -70,9 +70,9 @@ public class CommitService {
 
     }
 
-    public List<Commit> getSimpleCommits(String id) {
+    public List<Commit> getSimpleCommits(String owner, String repo ) {
 
-        String uri = "https://gitlab.com/api/v4/projects/" + id + "/repository/commits?private_token=glpat-2_yFGw7WLXHPBHEZHbG5";
+        String uri = "https://api.github.com/repos/" + owner + "/" + repo +"/commits";
 
         Commit[] response = restTemplate.getForObject(uri, Commit[].class);
 

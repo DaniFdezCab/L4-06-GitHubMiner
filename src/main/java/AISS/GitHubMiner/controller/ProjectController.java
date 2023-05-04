@@ -21,6 +21,7 @@ public class ProjectController {
     @GetMapping("/{owner}/{repo}")
     public Project findAll(@PathVariable String owner, @PathVariable String repo) {
         Project project = this.project.findProject(owner, repo);
+        project.setCommits(commits.getSimpleCommits(owner, repo));
         return project;
     }
 
