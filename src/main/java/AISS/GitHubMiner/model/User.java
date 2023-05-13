@@ -9,13 +9,13 @@ import java.util.Objects;
 public class User {
     @JsonProperty("id")
     private String id;
-    @JsonProperty("username")
+    @JsonProperty("login")
     private String userName;
     @JsonProperty("name")
     private String name;
     @JsonProperty("avatar_url")
     private String avatarUrl;
-    @JsonProperty("web_url")
+    @JsonProperty("url")
     private String webUrl;
 
 
@@ -71,10 +71,10 @@ public class User {
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
-                ", userName='" + userName + '\'' +
+                ", username='" + userName + '\'' +
                 ", name='" + name + '\'' +
-                ", avatarUrl='" + avatarUrl + '\'' +
-                ", webUrl='" + webUrl + '\'' +
+                ", avatar_url='" + avatarUrl + '\'' +
+                ", web_url='" + webUrl + '\'' +
                 '}';
     }
 

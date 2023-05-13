@@ -1,5 +1,7 @@
 package AISS.GitHubMiner.controller;
 
+import AISS.GitHubMiner.etl.Transformation;
+import AISS.GitHubMiner.model.GMProject;
 import AISS.GitHubMiner.model.Project;
 import AISS.GitHubMiner.service.CommitService;
 import AISS.GitHubMiner.service.IssueService;
@@ -7,6 +9,8 @@ import AISS.GitHubMiner.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
+import javax.xml.crypto.dsig.Transform;
 
 @RestController
 @RequestMapping("/api/project")
@@ -42,17 +46,11 @@ public class ProjectController {
     }
 
     @GetMapping("/{owner}/{repo}")
-    public Project sendProject(@PathVariable String owner, @PathVariable String repo,
-                           @RequestParam(required = false, name = "sinceCommits") Integer sinceCommits,
-                           @RequestParam(required = false, name = "sinceIssues") Integer sinceIssues,
-                           @RequestParam(required = false, name = "maxPages") Integer maxPages) {
-        if(sinceCommits==null){
-            sinceCommits=2;
-        }if(sinceIssues==null) {
-            sinceIssues=20;
-        }if(maxPages==null){
-            maxPages=2;
-        }
+    public GMProject sendProject(@PathVariable String owner, @PathVariable String repo,
+                                 @RequestParam(required = false, name = "sinceCommits") Integer sinceCommits,
+                                 @RequestParam(required = false, name = "sinceIssues") Integer sinceIssues,
+                                 @RequestParam(required = false, name = "maxPages") Integer maxPages) {
+
         Project project = this.project.findProject(owner, repo);
         project.setCommits(this.commits.getAllCommits(owner, repo, sinceCommits, maxPages));
         project.setIssue(this.issues.getAllIssues(owner, repo, sinceIssues, maxPages));
@@ -62,6 +60,6 @@ public class ProjectController {
                 + "?sinceCommits=" + sinceCommits + "&sinceIssues="
                 + sinceIssues +"&maxPages=" + maxPages, project, Project.class);
         */
-        return project;
+        return Transformation.parseProject(project);
     }
 }

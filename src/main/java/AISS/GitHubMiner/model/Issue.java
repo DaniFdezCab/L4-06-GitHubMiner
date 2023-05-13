@@ -34,18 +34,21 @@ public class Issue {
     private List<String> labels;
 
     @JsonProperty("user")
-    private Author author;
-    @JsonProperty("asignee")
-    private User asignee;
+    private User author;
+    @JsonProperty("assignee")
+    private User assignee;
     @JsonProperty("reactions")
     private Reaction reaction;
 
+    @JsonProperty("url")
+    private String webUrl;
+
+    @JsonProperty("comments")
+    private List<Comment> comments;
     public Issue(){
     }
 
-    public Issue(String id, String ref_id, String title, String description, String state,
-                 String created_at, String updated_at, List<String> labels, Author author,  Reaction reaction){
-
+    public Issue(String id, String ref_id, String title, String description, String state, String created_at, String updated_at, String closed_at, List<String> labels, User author, User assignee, Reaction reaction, String webUrl, List<Comment> comments) {
         this.id = id;
         this.ref_id = ref_id;
         this.title = title;
@@ -53,51 +56,126 @@ public class Issue {
         this.state = state;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.closed_at = closed_at;
         this.labels = labels;
+        this.author = author;
+        this.assignee = assignee;
         this.reaction = reaction;
-
+        this.webUrl = webUrl;
+        this.comments = comments;
     }
 
-    public String getId() { return id; }
+    public List<Comment> getComments() {
+        return comments;
+    }
 
-    public void setId(String id) { this.id = id; }
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
-    public String getRef_id() { return ref_id; }
+    public String getWebUrl() {
+        return webUrl;
+    }
 
-    public void setRef_id(String ref_id) { this.ref_id = ref_id; }
+    public void setWebUrl(String webUrl) {
+        this.webUrl = webUrl;
+    }
 
-    public String getTitle() { return title; }
+    public String getId() {
+        return id;
+    }
 
-    public void setTitle(String title) { this.title = title; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public String getDescription() { return description; }
+    public String getRef_id() {
+        return ref_id;
+    }
 
-    public void setDescription(String description) { this.description = description; }
+    public void setRef_id(String ref_id) {
+        this.ref_id = ref_id;
+    }
 
-    public String getState() { return state; }
+    public String getTitle() {
+        return title;
+    }
 
-    public void setState(String state) { this.state = state; }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-    public String getCreated_at() { return created_at; }
+    public String getDescription() {
+        return description;
+    }
 
-    public void setCreated_at(String created_at) { this.created_at = created_at; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public String getUpdated_at() { return updated_at; }
+    public String getState() {
+        return state;
+    }
 
-    public void setUpdated_at(String updated_at) { this.updated_at = updated_at; }
+    public void setState(String state) {
+        this.state = state;
+    }
 
-    public String getClosed_at() { return closed_at; }
+    public String getCreated_at() {
+        return created_at;
+    }
 
-    public void setClosed_at(String closed_at) { this.closed_at = closed_at; }
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
 
-    public List<String> getLabels() { return labels; }
+    public String getUpdated_at() {
+        return updated_at;
+    }
 
-    public void setLabels(List<String> labels) { this.labels = labels; }
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
+    }
 
-    public Reaction getReaction() { return reaction; }
+    public String getClosed_at() {
+        return closed_at;
+    }
 
-    public void setReaction(Reaction reaction) { this.reaction = reaction; }
+    public void setClosed_at(String closed_at) {
+        this.closed_at = closed_at;
+    }
 
+    public List<String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(List<String> labels) {
+        this.labels = labels;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public User getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(User assignee) {
+        this.assignee = assignee;
+    }
+
+    public Reaction getReaction() {
+        return reaction;
+    }
+
+    public void setReaction(Reaction reaction) {
+        this.reaction = reaction;
+    }
 
     @Override
     public String toString() {
@@ -111,20 +189,10 @@ public class Issue {
                 ", updated_at='" + updated_at + '\'' +
                 ", closed_at='" + closed_at + '\'' +
                 ", labels=" + labels +
+                ", author=" + author +
+                ", assignee=" + assignee +
                 ", reaction=" + reaction +
+                ", web_url=" + webUrl +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Issue issue = (Issue) o;
-        return Objects.equals(id, issue.id) && Objects.equals(ref_id, issue.ref_id) && Objects.equals(title, issue.title) && Objects.equals(description, issue.description) && Objects.equals(state, issue.state) && Objects.equals(created_at, issue.created_at) && Objects.equals(updated_at, issue.updated_at) && Objects.equals(closed_at, issue.closed_at) && Objects.equals(labels, issue.labels) && Objects.equals(reaction, issue.reaction);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, ref_id, title, description, state, created_at, updated_at, closed_at, labels, reaction);
     }
 }

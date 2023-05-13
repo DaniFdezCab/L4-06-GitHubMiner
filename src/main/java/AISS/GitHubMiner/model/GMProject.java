@@ -15,14 +15,14 @@ public class GMProject {
     @JsonProperty("html_url")
     private String webUrl;
     @JsonProperty("commits")
-    private List<Commit> commits;
+    private List<GMCommit> commits;
     @JsonProperty("issues")
-    private List<Issue> issues;
+    private List<GMIssue> issues;
 
     public GMProject(){
     }
 
-    public GMProject(String id, String name, String webUrl, List<Commit> commits, List<Issue> issues){
+    public GMProject(String id, String name, String webUrl, List<GMCommit> commits, List<GMIssue> issues){
         this.id = id;
         this.name = name;
         this.webUrl = webUrl;
@@ -56,19 +56,19 @@ public class GMProject {
         this.webUrl = web_url;
     }
     @JsonProperty("commits")
-    public List<Commit> getCommits() {
+    public List<GMCommit> getCommits() {
         return commits;
     }
     @JsonProperty("commits")
-    public void setCommits(List<Commit> commits) {
+    public void setCommits(List<GMCommit> commits) {
         this.commits = commits;
     }
     @JsonProperty("issues")
-    public List<Issue> getIssue() {
+    public List<GMIssue> getIssue() {
         return issues;
     }
     @JsonProperty("issues")
-    public void setIssue(List<Issue> issues) {
+    public void setIssue(List<GMIssue> issues) {
         this.issues = issues;
     }
 
@@ -83,16 +83,4 @@ public class GMProject {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Project project = (Project) o;
-        return Objects.equals(id, project.id) && Objects.equals(name, project.name) && Objects.equals(webUrl, project.webUrl) && Objects.equals(commits, project.commits) && Objects.equals(issues, project.issues);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, webUrl, commits, issues);
-    }
 }
