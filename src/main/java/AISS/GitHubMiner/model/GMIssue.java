@@ -55,7 +55,7 @@ public class GMIssue {
         this.upvotes = upvotes;
         this.downvotes = downvotes;
         this.webUrl = webUrl;
-        this.comments = this.comments;
+        this.comments = comments;
     }
 
     public String getId() {

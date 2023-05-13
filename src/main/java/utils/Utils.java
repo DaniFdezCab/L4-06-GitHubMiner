@@ -32,14 +32,5 @@ public class Utils {
         return result;
     }
 
-    public static void checkParametrosPorDefecto(Integer p1,Integer p2,Integer p3){
-        if(p1==null){
-            p1=2;
-        }if(p2==null) {
-            p2=20;
-        }if(p3==null){
-            p3=2;
-        }
-    }
 }
 

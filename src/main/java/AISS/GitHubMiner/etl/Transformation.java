@@ -1,12 +1,15 @@
 package AISS.GitHubMiner.etl;
 
 import AISS.GitHubMiner.model.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import AISS.GitHubMiner.service.*;
 
 public class Transformation {
 
+    private static CommentService commentService;
+
+    public Transformation(CommentService commentService) {
+        this.commentService = commentService;
+    }
 
     public static GMProject parseProject(Project p){
         GMProject gMProject = new GMProject();
@@ -16,14 +19,14 @@ public class Transformation {
         gMProject.setCommits(p.getCommits().stream().map(c -> parseCommit(c)).toList());
         gMProject.setIssue(p.getIssue().stream().map(i -> parseIssue(i)).toList());
 
-    return gMProject;
+        return gMProject;
     }
 
     private static GMIssue parseIssue(Issue issue) {
         GMIssue gmIssue = new GMIssue(issue.getId(), issue.getRef_id(), issue.getTitle(), issue.getDescription(),
                 issue.getState(), issue.getCreated_at(), issue.getUpdated_at(), issue.getClosed_at(),
                 issue.getLabels(), issue.getAuthor(), issue.getAssignee(), issue.getReaction().getUpVotes(), issue.getReaction().getDownVotes(),
-                issue.getWebUrl(), issue.getComments());
+                issue.getWebUrl(), null);
         return gmIssue;
     }
 

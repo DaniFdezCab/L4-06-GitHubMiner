@@ -43,12 +43,12 @@ public class Issue {
     @JsonProperty("url")
     private String webUrl;
 
-    @JsonProperty("comments")
-    private List<Comment> comments;
+    @JsonProperty("comments_url")
+    private String comments;
     public Issue(){
     }
 
-    public Issue(String id, String ref_id, String title, String description, String state, String created_at, String updated_at, String closed_at, List<String> labels, User author, User assignee, Reaction reaction, String webUrl, List<Comment> comments) {
+    public Issue(String id, String ref_id, String title, String description, String state, String created_at, String updated_at, String closed_at, List<String> labels, User author, User assignee, Reaction reaction, String webUrl, String comments) {
         this.id = id;
         this.ref_id = ref_id;
         this.title = title;
@@ -65,11 +65,11 @@ public class Issue {
         this.comments = comments;
     }
 
-    public List<Comment> getComments() {
+    public String getComments() {
         return comments;
     }
 
-    public void setComments(List<Comment> comments) {
+    public void setComments(String comments) {
         this.comments = comments;
     }
 
@@ -193,6 +193,7 @@ public class Issue {
                 ", assignee=" + assignee +
                 ", reaction=" + reaction +
                 ", web_url=" + webUrl +
+                ", comments=" + comments +
                 '}';
     }
 }
