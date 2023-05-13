@@ -58,7 +58,7 @@ public class ProjectController {
         project.setIssue(this.issues.getAllIssues(owner, repo, sinceIssues, maxPages));
 
         /*
-       restTemplate.postForObject("http://localhost:8081/api/project/" + id
+       restTemplate.postForObject("http://localhost:8081/api/project/" + project.getId()
                 + "?sinceCommits=" + sinceCommits + "&sinceIssues="
                 + sinceIssues +"&maxPages=" + maxPages, project, Project.class);
         */
