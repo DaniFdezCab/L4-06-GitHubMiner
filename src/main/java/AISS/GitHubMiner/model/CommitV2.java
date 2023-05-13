@@ -12,35 +12,38 @@ public class CommitV2 {
     @JsonProperty("committer")
     private Committer committer ;
     @JsonProperty("message")
-    private CommitV2 message;
+    private String message;
 
-    public CommitV2(Author author, Committer committer, CommitV2 message) {
+    public CommitV2(){
+
+    }
+    public CommitV2(Author author, Committer committer, String message) {
         this.author = author;
         this.committer = committer;
         this.message = message;
     }
-
+    @JsonProperty("author")
     public Author getAuthor() {
         return author;
     }
-
+    @JsonProperty("author")
     public void setAuthor(Author author) {
         this.author = author;
     }
-
+    @JsonProperty("committer")
     public Committer getCommitter() {
         return committer;
     }
-
+    @JsonProperty("committer")
     public void setCommitter(Committer committer) {
         this.committer = committer;
     }
-
-    public CommitV2 getMessage() {
+    @JsonProperty("message")
+    public String getMessage() {
         return message;
     }
-
-    public void setMessage(CommitV2 message) {
+    @JsonProperty("message")
+    public void setMessage(String message) {
         this.message = message;
     }
 
@@ -51,5 +54,18 @@ public class CommitV2 {
                 ", committer=" + committer +
                 ", message=" + message +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CommitV2 commitV2 = (CommitV2) o;
+        return Objects.equals(author, commitV2.author) && Objects.equals(committer, commitV2.committer) && Objects.equals(message, commitV2.message);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(author, committer, message);
     }
 }

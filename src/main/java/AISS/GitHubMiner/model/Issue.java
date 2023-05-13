@@ -11,7 +11,7 @@ public class Issue {
 
     @JsonProperty("id")
     private String id;
-    @JsonProperty("ref_id")
+    @JsonProperty("node_id")
     private String ref_id;
     @JsonProperty("title")
     private String title;
@@ -33,18 +33,14 @@ public class Issue {
     @JsonProperty("labels")
     private List<String> labels;
 
-    @JsonProperty("upVotes")
-    private Integer upVotes;
-
-    @JsonProperty("downVotes")
-    private Integer downVotes;
+    @JsonProperty("reactions")
+    private Reaction reaction;
 
     public Issue(){
     }
 
     public Issue(String id, String ref_id, String title, String description, String state,
-                 String created_at, String updated_at, List<String> labels, Integer upVotes,
-                 Integer downVotes){
+                 String created_at, String updated_at, List<String> labels, Reaction reaction){
 
         this.id = id;
         this.ref_id = ref_id;
@@ -54,8 +50,7 @@ public class Issue {
         this.created_at = created_at;
         this.updated_at = updated_at;
         this.labels = labels;
-        this.upVotes = upVotes;
-        this.downVotes = downVotes;
+        this.reaction = reaction;
 
     }
 
@@ -95,13 +90,10 @@ public class Issue {
 
     public void setLabels(List<String> labels) { this.labels = labels; }
 
-    public Integer getUpVotes() { return upVotes; }
+    public Reaction getReaction() { return reaction; }
 
-    public void setUpVotes(Integer upVotes) { this.upVotes = upVotes; }
+    public void setReaction(Reaction reaction) { this.reaction = reaction; }
 
-    public Integer getDownVotes() { return downVotes; }
-
-    public void setDownVotes(Integer downVotes) { this.downVotes = downVotes; }
 
     @Override
     public String toString() {
@@ -115,8 +107,7 @@ public class Issue {
                 ", updated_at='" + updated_at + '\'' +
                 ", closed_at='" + closed_at + '\'' +
                 ", labels=" + labels +
-                ", upVotes=" + upVotes +
-                ", downVotes=" + downVotes +
+                ", reaction=" + reaction +
                 '}';
     }
 
@@ -125,11 +116,11 @@ public class Issue {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Issue issue = (Issue) o;
-        return Objects.equals(id, issue.id) && Objects.equals(ref_id, issue.ref_id) && Objects.equals(title, issue.title) && Objects.equals(description, issue.description) && Objects.equals(state, issue.state) && Objects.equals(created_at, issue.created_at) && Objects.equals(updated_at, issue.updated_at) && Objects.equals(closed_at, issue.closed_at) && Objects.equals(labels, issue.labels) && Objects.equals(upVotes, issue.upVotes) && Objects.equals(downVotes, issue.downVotes);
+        return Objects.equals(id, issue.id) && Objects.equals(ref_id, issue.ref_id) && Objects.equals(title, issue.title) && Objects.equals(description, issue.description) && Objects.equals(state, issue.state) && Objects.equals(created_at, issue.created_at) && Objects.equals(updated_at, issue.updated_at) && Objects.equals(closed_at, issue.closed_at) && Objects.equals(labels, issue.labels) && Objects.equals(reaction, issue.reaction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, ref_id, title, description, state, created_at, updated_at, closed_at, labels, upVotes, downVotes);
+        return Objects.hash(id, ref_id, title, description, state, created_at, updated_at, closed_at, labels, reaction);
     }
 }

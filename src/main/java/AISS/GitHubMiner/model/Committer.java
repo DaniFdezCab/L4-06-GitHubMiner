@@ -21,27 +21,27 @@ public class Committer {
         this.email = email;
         this.date = date;
     }
-
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
-
+    @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
     }
-
+    @JsonProperty("email")
     public String getEmail() {
         return email;
     }
-
+    @JsonProperty("email")
     public void setEmail(String email) {
         this.email = email;
     }
-
+    @JsonProperty("date")
     public LocalDateTime getDate() {
         return date;
     }
-
+    @JsonProperty("date")
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
@@ -53,6 +53,19 @@ public class Committer {
                 ", email='" + email + '\'' +
                 ", date=" + date +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Committer committer = (Committer) o;
+        return Objects.equals(name, committer.name) && Objects.equals(email, committer.email) && Objects.equals(date, committer.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, date);
     }
 }
 

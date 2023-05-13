@@ -22,7 +22,6 @@ public class CommitService {
     @Autowired
     RestTemplate restTemplate;
 
-    private Logger logger;
     public ResponseEntity<Commit[]> getCommits(String uri) {
 
         //Request
@@ -36,32 +35,26 @@ public class CommitService {
         return response;
     }
 
-    public List<Commit> getAllCommits(String id, Integer sinceDays, Integer maxPages){
+    public List<Commit> getAllCommits(String owner, String repo, Integer sinceDays, Integer maxPages){
 
         List<Commit> commits = new ArrayList<>();
         LocalDateTime since = LocalDateTime.now().minusDays(sinceDays);
 
         // FIRST PAGE
 
-        String uri = "https://gitlab.com/api/v4/projects/" + id + "/repository/commits?since=" + since.format(DateTimeFormatter.ofPattern("YYYY-MM-DDTHH:MM:SSZ")) + "?private_token=glpat-2_yFGw7WLXHPBHEZHbG5";
+        String uri = "https://api.github.com/repos/" + owner + "/" + repo +"/commits?since=" + since.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")).toString();
 
-        logger.debug("retrieving commit from page 1" + uri);
 
         ResponseEntity<Commit[]> response = getCommits(uri);
         List<Commit> pageCommits = Arrays.stream(response.getBody()).toList();
-        logger.debug(pageCommits.size() + "Commits retrieved.");
 
         commits.addAll(pageCommits);
-
-        // 2..N PAGE
 
         String nextPageUrl = Utils.getNextPageUrl(response.getHeaders());
         int page = 2;
         while (nextPageUrl != null && page <= maxPages){
-            logger.debug("Retrieving commits from page" + page + ": " + nextPageUrl);
             response = getCommits(nextPageUrl);
             pageCommits = Arrays.stream(response.getBody()).toList();
-            logger.debug(pageCommits.size() + "Commits retrieved.");
             nextPageUrl = Utils.getNextPageUrl(response.getHeaders());
             page++;
             commits.addAll(pageCommits);
@@ -69,7 +62,6 @@ public class CommitService {
         return commits;
 
     }
-
     public List<Commit> getSimpleCommits(String owner, String repo ) {
 
         String uri = "https://api.github.com/repos/" + owner + "/" + repo +"/commits";
