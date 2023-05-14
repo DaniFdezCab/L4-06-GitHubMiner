@@ -12,7 +12,7 @@ public class GMProject {
     private String id;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("html_url")
+    @JsonProperty("web_url")
     private String webUrl;
     @JsonProperty("commits")
     private List<GMCommit> commits;
@@ -47,11 +47,11 @@ public class GMProject {
     public void setName(String name) {
         this.name = name;
     }
-    @JsonProperty("html_url")
+    @JsonProperty("web_url")
     public String getWeb_url() {
         return webUrl;
     }
-    @JsonProperty("html_url")
+    @JsonProperty("web_url")
     public void setWeb_url(String web_url) {
         this.webUrl = web_url;
     }
@@ -77,7 +77,7 @@ public class GMProject {
         return "Project{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", webUrl='" + webUrl + '\'' +
+                ", web_url='" + webUrl + '\'' +
                 ", commits=" + commits +
                 ", issues=" + issues +
                 '}';

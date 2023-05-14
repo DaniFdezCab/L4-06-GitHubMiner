@@ -3,15 +3,13 @@ package AISS.GitHubMiner.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Objects;
-
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Comment {
+public class GMComment {
 
     @JsonProperty("id")
     private Integer id;
-    @JsonProperty("user")
-    private User author;
+    @JsonProperty("author")
+    private GMUser author;
     @JsonProperty("body")
     private String body;
     @JsonProperty("created_at")
@@ -19,10 +17,10 @@ public class Comment {
     @JsonProperty("updated_at")
     private String updated_at;
 
-    public Comment() {
+    public GMComment() {
     }
 
-    public Comment(Integer id, User auth, String body, String created_at, String updated_at) {
+    public GMComment(Integer id, GMUser auth, String body, String created_at, String updated_at) {
         this.id = id;
         this.author = auth;
         this.body = body;
@@ -41,11 +39,11 @@ public class Comment {
         this.id = id;
     }
 
-    public User getAuthor() {
+    public GMUser getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(GMUser author) {
         this.author = author;
     }
 

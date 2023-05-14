@@ -26,21 +26,17 @@ public class GMIssue {
     @JsonProperty("labels")
     private List<String> labels;
     @JsonProperty("author")
-    private User author;
+    private GMUser author;
     @JsonProperty("assignee")
-    private User assignee;
+    private GMUser assignee;
     @JsonProperty("upvotes")
     private Integer upvotes;
     @JsonProperty("downvotes")
     private Integer downvotes;
+    @JsonProperty("comments")
+    private List<GMComment> comments;
 
-    @JsonProperty("web_url")
-    private String webUrl;
-
-    @JsonProperty("comments_url")
-    private List<Comment> comments;
-
-    public GMIssue(String id, String refId, String title, String description, String state, String createdAt, String updatedAt, String closedAt, List<String> labels, User author, User assignee, Integer upvotes, Integer downvotes, String webUrl, List<Comment> comments) {
+    public GMIssue(String id, String refId, String title, String description, String state, String createdAt, String updatedAt, String closedAt, List<String> labels, GMUser author, GMUser assignee, Integer upvotes, Integer downvotes, List<GMComment> comments) {
         this.id = id;
         this.refId = refId;
         this.title = title;
@@ -54,7 +50,6 @@ public class GMIssue {
         this.assignee = assignee;
         this.upvotes = upvotes;
         this.downvotes = downvotes;
-        this.webUrl = webUrl;
         this.comments = comments;
     }
 
@@ -130,19 +125,19 @@ public class GMIssue {
         this.labels = labels;
     }
 
-    public User getAuthor() {
+    public GMUser getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(GMUser author) {
         this.author = author;
     }
 
-    public User getAssignee() {
+    public GMUser getAssignee() {
         return assignee;
     }
 
-    public void setAssignee(User assignee) {
+    public void setAssignee(GMUser assignee) {
         this.assignee = assignee;
     }
 
@@ -162,19 +157,11 @@ public class GMIssue {
         this.downvotes = downvotes;
     }
 
-    public String getWebUrl() {
-        return webUrl;
-    }
-
-    public void setWebUrl(String webUrl) {
-        this.webUrl = webUrl;
-    }
-
-    public List<Comment> getComments() {
+    public List<GMComment> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comment> comments) {
+    public void setComments(List<GMComment> comments) {
         this.comments = comments;
     }
 

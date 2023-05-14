@@ -40,15 +40,12 @@ public class Issue {
     @JsonProperty("reactions")
     private Reaction reaction;
 
-    @JsonProperty("url")
-    private String webUrl;
-
     @JsonProperty("comments_url")
     private String comments;
     public Issue(){
     }
 
-    public Issue(String id, String ref_id, String title, String description, String state, String created_at, String updated_at, String closed_at, List<String> labels, User author, User assignee, Reaction reaction, String webUrl, String comments) {
+    public Issue(String id, String ref_id, String title, String description, String state, String created_at, String updated_at, String closed_at, List<String> labels, User author, User assignee, Reaction reaction, String comments) {
         this.id = id;
         this.ref_id = ref_id;
         this.title = title;
@@ -61,7 +58,6 @@ public class Issue {
         this.author = author;
         this.assignee = assignee;
         this.reaction = reaction;
-        this.webUrl = webUrl;
         this.comments = comments;
     }
 
@@ -71,14 +67,6 @@ public class Issue {
 
     public void setComments(String comments) {
         this.comments = comments;
-    }
-
-    public String getWebUrl() {
-        return webUrl;
-    }
-
-    public void setWebUrl(String webUrl) {
-        this.webUrl = webUrl;
     }
 
     public String getId() {
@@ -152,19 +140,19 @@ public class Issue {
     public void setLabels(List<String> labels) {
         this.labels = labels;
     }
-
+    @JsonProperty("user")
     public User getAuthor() {
         return author;
     }
-
+    @JsonProperty("user")
     public void setAuthor(User author) {
         this.author = author;
     }
-
+    @JsonProperty("assignee")
     public User getAssignee() {
         return assignee;
     }
-
+    @JsonProperty("assignee")
     public void setAssignee(User assignee) {
         this.assignee = assignee;
     }
@@ -192,7 +180,6 @@ public class Issue {
                 ", author=" + author +
                 ", assignee=" + assignee +
                 ", reaction=" + reaction +
-                ", web_url=" + webUrl +
                 ", comments=" + comments +
                 '}';
     }

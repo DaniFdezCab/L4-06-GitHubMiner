@@ -3,6 +3,7 @@ package AISS.GitHubMiner.service;
 import AISS.GitHubMiner.model.Commit;
 import AISS.GitHubMiner.model.Issue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,10 +23,12 @@ public class IssueService {
     @Autowired
     RestTemplate restTemplate;
 
+
     public ResponseEntity<Issue[]> getIssues(String uri) {
 
         //Request
         HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + "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");
 
         HttpEntity<Issue[]> request = new HttpEntity<>(null, headers);
 

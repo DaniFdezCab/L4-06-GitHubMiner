@@ -23,12 +23,14 @@ public class ProjectController {
     private final ProjectService project;
     private final CommitService commits;
     private final IssueService issues;
+    private final Transformation transformation;
     private final CommentService comments;
 
-    public ProjectController(ProjectService project, CommitService commits, IssueService issues, CommentService comments){
+    public ProjectController(ProjectService project, CommitService commits, IssueService issues, Transformation transformation, CommentService comments){
         this.project = project;
         this.commits = commits;
         this.issues = issues;
+        this.transformation = transformation;
         this.comments = comments;
     }
     @GetMapping("/prueba/{owner}/{repo}")
@@ -72,7 +74,7 @@ public class ProjectController {
                 + sinceIssues +"&maxPages=" + maxPages, project, Project.class);
         */
 
-        return Transformation.parseProject(project);
+        return transformation.parseProject(project);
     }
 
     @GetMapping("/comments/{id}")
