@@ -37,7 +37,7 @@ public class ProjectService {
         String uri = "https://api.github.com/repos/" + owner + "/" + repo;
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + "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");
+        headers.set("Authorization", "Bearer " + "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");
 
         HttpEntity<Project> request = new HttpEntity<>(null, headers);
         //send
@@ -46,6 +46,5 @@ public class ProjectService {
         return response.getBody();
 
     }
-
 
 }

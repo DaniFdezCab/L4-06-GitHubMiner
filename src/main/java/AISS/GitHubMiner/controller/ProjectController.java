@@ -52,7 +52,7 @@ public class ProjectController {
         return project;
     }
 
-    @GetMapping("/{owner}/{repo}")
+    @PostMapping("/{owner}/{repo}")
     public GMProject sendProject(@PathVariable String owner, @PathVariable String repo,
                                  @RequestParam(required = false, name = "sinceCommits") Integer sinceCommits,
                                  @RequestParam(required = false, name = "sinceIssues") Integer sinceIssues,
@@ -68,13 +68,9 @@ public class ProjectController {
         project.setCommits(this.commits.getAllCommits(owner, repo, sinceCommits, maxPages));
         project.setIssue(this.issues.getAllIssues(owner, repo, sinceIssues, maxPages));
 
-        /*
-       restTemplate.postForObject("http://localhost:8081/api/project/" + project.getId()
-                + "?sinceCommits=" + sinceCommits + "&sinceIssues="
-                + sinceIssues +"&maxPages=" + maxPages, project, Project.class);
-        */
+        GMProject p = restTemplate.postForObject("http://localhost:8080/gitminer/projects", transformation.parseProject(project), GMProject.class);
 
-        return transformation.parseProject(project);
+        return p;
     }
 
     @GetMapping("/comments/{id}")

@@ -29,7 +29,7 @@ public class CommitService {
 
         HttpHeaders headers = new HttpHeaders();
 
-        headers.set("Authorization", "Bearer " + "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");
+        headers.set("Authorization", "Bearer " + "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");
 
         HttpEntity<Commit[]> request = new HttpEntity<>(null, headers);
 
