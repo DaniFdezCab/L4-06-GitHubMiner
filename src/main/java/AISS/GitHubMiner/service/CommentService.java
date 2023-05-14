@@ -27,7 +27,7 @@ public class CommentService {
 
         HttpHeaders headers = new HttpHeaders();
 
-        headers.set("Authorization", "Bearer " + "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");
+        headers.set("Authorization", "Bearer " + "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");
 
         HttpEntity<Comment[]> request = new HttpEntity<>(null, headers);
 
