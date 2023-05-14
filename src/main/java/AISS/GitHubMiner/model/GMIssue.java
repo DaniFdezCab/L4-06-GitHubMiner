@@ -37,7 +37,7 @@ public class GMIssue {
     @JsonProperty("web_url")
     private String webUrl;
 
-    @JsonProperty("comments")
+    @JsonProperty("comments_url")
     private List<Comment> comments;
 
     public GMIssue(String id, String refId, String title, String description, String state, String createdAt, String updatedAt, String closedAt, List<String> labels, User author, User assignee, Integer upvotes, Integer downvotes, String webUrl, List<Comment> comments) {

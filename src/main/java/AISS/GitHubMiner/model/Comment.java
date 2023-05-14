@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Comment {
 
     @JsonProperty("id")
-    private String id;
+    private Integer id;
     @JsonProperty("user")
     private User author;
     @JsonProperty("body")
@@ -19,11 +19,10 @@ public class Comment {
     @JsonProperty("updated_at")
     private String updated_at;
 
-
     public Comment() {
     }
 
-    public Comment(String id, User auth, String body, String created_at, String updated_at) {
+    public Comment(Integer id, User auth, String body, String created_at, String updated_at) {
         this.id = id;
         this.author = auth;
         this.body = body;
@@ -33,13 +32,21 @@ public class Comment {
     }
 
     @JsonProperty("id")
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     @JsonProperty("id")
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     @JsonProperty("body")

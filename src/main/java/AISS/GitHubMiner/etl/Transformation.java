@@ -11,6 +11,7 @@ public class Transformation {
         this.commentService = commentService;
     }
 
+
     public static GMProject parseProject(Project p){
         GMProject gMProject = new GMProject();
         gMProject.setId(p.getId());
@@ -26,7 +27,7 @@ public class Transformation {
         GMIssue gmIssue = new GMIssue(issue.getId(), issue.getRef_id(), issue.getTitle(), issue.getDescription(),
                 issue.getState(), issue.getCreated_at(), issue.getUpdated_at(), issue.getClosed_at(),
                 issue.getLabels(), issue.getAuthor(), issue.getAssignee(), issue.getReaction().getUpVotes(), issue.getReaction().getDownVotes(),
-                issue.getWebUrl(), null);
+                issue.getWebUrl(), commentService.getCommentIssue(issue.getComments()));
         return gmIssue;
     }
 
